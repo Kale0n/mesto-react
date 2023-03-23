@@ -1,16 +1,16 @@
 import api from '../utils/Api.js'
-import React from "react"
+import {useState, useEffect} from "react"
 import Card from '../components/Card.js'
 
 function Main(props) {
 
-    let [userName, setUserName] = React.useState('')
-    let [userDescription, setUserDescription] = React.useState('')
-    let [userAvatar, setUserAvatar] = React.useState('')
+    const [userName, setUserName] = useState('')
+    const [userDescription, setUserDescription] = useState('')
+    const [userAvatar, setUserAvatar] = useState('')
 
-    let [cards, setCards] = React.useState([])
+    const [cards, setCards] = useState([])
 
-    React.useEffect(() => {
+    useEffect(() => {
         Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([UserData, initialCards])=> {
             setUserName(UserData.name);
@@ -22,7 +22,7 @@ function Main(props) {
         .catch((err) => {
             console.log(err);
         })
-    })
+    }, [])
 
     return (
     <div className="Main">
@@ -42,7 +42,7 @@ function Main(props) {
         </section>
 
         <section className="elements">
-            { cards.map((card, index) => <Card onCardClick={props.onCardClick} card={card} key={index}/>)}
+            { cards.map((card) => <Card onCardClick={props.onCardClick} card={card} key={card._id}/>)}
         </section>
     </div>   
     );

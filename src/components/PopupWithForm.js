@@ -5,7 +5,7 @@ function PopupWithForm (props) {
             <h3 className="popup__heading">{props.title}</h3>
             <fieldset name={`${props.name}-field-set`} className="form__input-container">
                 {props.children}
-                <button type="submit" name="saveButton" className="form__save-button">{props.buttonText}</button>
+                <button type="submit" name="saveButton" className="form__save-button">{props.buttonText || 'Сохранить'}</button>
             </fieldset>
             <button name="closeButton" type="button" className="popup__close-button" onClick={props.onClose}></button>
         </form>

@@ -1,6 +1,5 @@
 function ImagePopup (props) {
     return (
-        props.card != null ?
         <div className={`popup popup_zoom ${props.isOpen ? 'popup_opened' : ''}`}>
             <figure className="zoom">
                 <img src={props.card.link} alt={props.card.name} className="zoom__photo"/>
@@ -8,8 +7,6 @@ function ImagePopup (props) {
                 <button name="closeButton" type="button" className="popup__close-button" onClick={props.onClose}></button>
             </figure>
         </div>
-        :
-        <div></div>
     )
 }
 

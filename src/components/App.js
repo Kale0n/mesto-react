@@ -7,11 +7,11 @@ import PopupWithForm from './PopupWithForm.js'
 import ImagePopup from './ImagePopup.js'
 
 function App() {
-    let [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-    let [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-    let [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-    let [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-    let [selectedCard, setSelectedCard] = React.useState(null);
+    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+    const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+    const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+    const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
+    const [selectedCard, setSelectedCard] = React.useState(null);
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -49,7 +49,7 @@ function App() {
           />
           <Footer/>
 
-        <PopupWithForm title="Редактировать профиль" name="edit-profile" buttonText="Сохранить" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm title="Редактировать профиль" name="edit-profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
           <input id="input-name" type="text" name="name" className="form__input" placeholder="Ваше имя" minLength="2" maxLength="40" required/>
           <span className="input-name-error input-error"></span>
           <input id="input-occupation" type="text" name="about" className="form__input" placeholder="Ваше занятие" minLength="2" maxLength="200" required/>
@@ -63,7 +63,7 @@ function App() {
           <span className="input-link-error input-error"></span>
         </PopupWithForm>
 
-        <PopupWithForm title="Обновить аватар" name="edit-avatar" buttonText="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm title="Обновить аватар" name="edit-avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
           <input id="input-avatar" type="url" name="avatar" className="form__input" placeholder="Ссылка на аватар" required/>
           <span className="input-avatar-error input-error"></span>
         </PopupWithForm>
@@ -72,7 +72,7 @@ function App() {
           
         </PopupWithForm>
 
-        <ImagePopup isOpen={isImagePopupOpen} card={selectedCard} onClose={closeAllPopups}/>
+        <ImagePopup isOpen={isImagePopupOpen} card={selectedCard || {}} onClose={closeAllPopups}/>
       </div>
     </div>
   );
