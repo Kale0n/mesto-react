@@ -43,6 +43,7 @@ class Api {
         }).then(this._checkResponse);
     }
 
+
     likeCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: 'PUT',
@@ -55,6 +56,14 @@ class Api {
             method: 'DELETE',
             headers:this._headers
         }).then(this._checkResponse);
+    }
+
+    changeCardsLikeStatus(cardId, isLiked) {
+        if (isLiked) {
+            return this.likeCard(cardId)
+        } else {
+            return this.dislikeCard(cardId)
+        }
     }
 
     deleteCard(cardId) {
