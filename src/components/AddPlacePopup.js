@@ -5,6 +5,13 @@ export default function AddPlacePopup (props) {
     const [name, setName] = React.useState('');
     const [link, setLink] = React.useState('');
 
+    React.useEffect(() => {
+        if(props.isOpen) {
+            setName('');
+            setLink('')
+        }
+    }, [props.isOpen])
+
     function handleNameChange (e) {
         setName(e.target.value)
     }
@@ -14,8 +21,7 @@ export default function AddPlacePopup (props) {
     }
 
     function handleSubmit(e) {
-        e.preventDefault();
-    
+        e.preventDefault();    
         props.onAddCard({
         name,
         link,
